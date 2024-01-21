@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-Bonjour,
-
-Je n'ai pas réussi à push dans le main j'une erreur.
-Le rendu est push sur la branch master.
-
-Cordialement,
-
-Arthur Dauphin
-=======
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/6epMQcoo)
 # Angular : rendu n°2
 Repository où déposer le projet n°2 Angular
