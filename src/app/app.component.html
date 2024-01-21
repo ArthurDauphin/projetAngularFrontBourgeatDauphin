@@ -1,0 +1,43 @@
+<mat-toolbar color="primary">
+  <button
+    background-color="primary"
+    mat-button
+    (click)="showFiller = !showFiller"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <nav>
+    <a routerLink="/home"
+      ><span id="title">{{ titre }}</span></a
+    >
+  </nav>
+  <span class="spacer"></span>
+  <nav>
+    <a routerLink="/login"
+      ><button mat-raised-button color="accent" id="login-btn">Login</button></a
+    >
+  </nav>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav [(opened)]="showFiller" mode="push">
+    <ul>
+      <li><button class="sn" mat-raised-button>Liste des devoirs</button></li>
+      <li><button class="sn" mat-raised-button>Ajout d'un devoir</button></li>
+      <li>
+        <button class="sn" mat-raised-button>Modification d'un devoir</button>
+      </li>
+      <li>
+        <button class="sn" mat-raised-button>Suppression d'un devoir</button>
+      </li>
+      <li>
+        <button class="sn" mat-raised-button>
+          Génération de données de test
+        </button>
+      </li>
+    </ul>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
