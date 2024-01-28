@@ -10,9 +10,13 @@ import { AuthService } from 'src/app/shared/auth.service';
   styleUrls: ['./add-assignment.component.css'],
 })
 export class AddAssignmentComponent {
-  // Evenement qu'on enverra au père avec la soumission
-  // du formulaire
-  //@Output() nouvelAssignment = new EventEmitter<Assignment>();
+  nomDevoir = '';
+  dateDeRendu?: Date = undefined;
+  auteur = '';
+  matiere = '';
+  photo = '';
+  note?: number;
+  remarques = '';
 
   constructor(
     private assignmentsService: AssignmentsService,
@@ -20,31 +24,25 @@ export class AddAssignmentComponent {
     private auth: AuthService
   ) {}
 
-  // pour le formulaire
-  nomDevoir = '';
-  dateDeRendu?: Date = undefined;
-  newAssignment = new Assignment();
-
   onSubmit(event: any) {
     event.preventDefault();
     const newAssignment = new Assignment();
     newAssignment.id = this.assignmentsService.getNewID();
     newAssignment.nom = this.nomDevoir;
+    newAssignment.auteur = this.auteur;
+    newAssignment.matière = this.matiere;
+    newAssignment.photo = this.photo;
     if (this.dateDeRendu) newAssignment.dateDeRendu = this.dateDeRendu;
-
     newAssignment.rendu = false;
 
-    //this.assignments.push(a);
-    this.assignmentsService
-      .addAssignment(newAssignment)
-      .subscribe((reponse) => { console.log(reponse.message)
-    console.log('Dernier devoir ajouté:', newAssignment);
-    this.router.navigate(['/home']);
-      });
-    // pass an argument of type number to the getAssignment() function
+    this.assignmentsService.addAssignment(newAssignment).subscribe((reponse) => {
+      console.log(reponse.message);
+      console.log('Dernier devoir ajouté:', newAssignment);
+      this.router.navigate(['/home']);
+    });
   }
 
-  isLogged()  {
+  isLogged() {
     return this.auth.isLoggedIn();
- }
+  }
 }

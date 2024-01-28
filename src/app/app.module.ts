@@ -15,7 +15,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule} from '@angular/material/list';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 ;
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -67,6 +70,8 @@ const routes: Routes = [
     MatSidenavModule,
     MatSlideToggleModule,
     HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
     RouterModule.forRoot(routes),
   ],  
   providers: [],

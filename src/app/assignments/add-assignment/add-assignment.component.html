@@ -20,6 +20,47 @@
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
+  <mat-form-field>
+    <mat-label> Auteur : </mat-label>
+    <input matInput
+           placeholder="Auteur"
+           [(ngModel)]="auteur"
+           name="auteur"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label> Matière : </mat-label>
+    <input matInput
+           placeholder="Matière"
+           [(ngModel)]="matiere"
+           name="matiere"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label> Photo : </mat-label>
+    <input matInput
+           placeholder="URL de la photo"
+           [(ngModel)]="photo"
+           name="photo"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label> Note : </mat-label>
+    <input matInput
+           type="number"
+           placeholder="0/20e"
+           [(ngModel)]="note"
+           name="note"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label> Remarques : </mat-label>
+    <textarea matInput
+              placeholder="Ajouter des remarques"
+              [(ngModel)]="remarques"
+              name="remarques"
+    ></textarea>
+  </mat-form-field>
   <button [disabled]="!isLogged()" type='button' mat-stroked-button color="primary" (click)="onSubmit($event)">Ajouter devoir</button>
 </form>
 
