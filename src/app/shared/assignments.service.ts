@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AssignmentsService {
   assignments: Assignment[] = [];
-
+  
   constructor(
     private loggingService: LoggingService,
     private http: HttpClient
@@ -28,9 +28,9 @@ url = "https://app-assignment-backend.onrender.com/api/assignments"
   }
 
   getNewID(): number {
-    return this.assignments.length + 1;
+    return new Date().getTime();
   }
-
+  
   addAssignment(assignment: Assignment): Observable<any> {
     this.loggingService.log(assignment.nom, 'ajouté');
     return this.http.post<Assignment>(this.url, assignment);

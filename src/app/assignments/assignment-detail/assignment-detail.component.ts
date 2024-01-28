@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/shared/auth.service';
   styleUrls: ['./assignment-detail.component.css'],
 })
 export class AssignmentDetailComponent {
-  assignmentTransmis?: Assignment;
+  assignmentTransmis!: Assignment;
 
   constructor(
     private assignmentsService: AssignmentsService,
@@ -28,16 +28,27 @@ export class AssignmentDetailComponent {
   }
 
   onAssignmentRendu() {
-    if (this.assignmentTransmis) {
-      this.assignmentTransmis.rendu = true;
+    // Vérifier si la note est définie et valide
+    if (this.assignmentTransmis.note === null || this.assignmentTransmis.note === undefined) {
+      alert("L'Assignment ne peut pas être marqué comme rendu sans une note valide.");
+      return;
+    }
+    this.assignmentTransmis.rendu = true;
+    this.assignmentsService.updateAssignment(this.assignmentTransmis).subscribe({
 
-      this.assignmentsService
-        .updateAssignment(this.assignmentTransmis)
-        .subscribe((reponse) => { console.log(reponse.message);
+      next: (response) => {
+        console.log(response.message);
         this.router.navigate(['home']);
+      },
+      error: (err) => {
+        console.error(err);
+        this.router.navigate(['home']);
+      }
+      
     });
+    
   }
-}
+  
 
   //@Output() deleteAssignment = new EventEmitter<Assignment>();
 
@@ -63,6 +74,10 @@ export class AssignmentDetailComponent {
   isAdmin()  {
      return this.auth.isAdminUser();
   }
-
-
+  isNoted() {
+    if (this.assignmentTransmis && (this.assignmentTransmis.note === null || this.assignmentTransmis.note === undefined))
+      return false;
+    else
+      return true;
+  }
 }

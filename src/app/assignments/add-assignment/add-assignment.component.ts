@@ -11,12 +11,11 @@ import { AuthService } from 'src/app/shared/auth.service';
 })
 export class AddAssignmentComponent {
   nomDevoir = '';
-  dateDeRendu?: Date = undefined;
+  dateDeRendu!: Date;
   auteur = '';
   matiere = '';
-  photo = '';
-  note?: number;
-  remarques = '';
+  photoProf = '';
+  photoMatiere = '';
 
   constructor(
     private assignmentsService: AssignmentsService,
@@ -29,10 +28,11 @@ export class AddAssignmentComponent {
     const newAssignment = new Assignment();
     newAssignment.id = this.assignmentsService.getNewID();
     newAssignment.nom = this.nomDevoir;
+    newAssignment.dateDeRendu = this.dateDeRendu;
     newAssignment.auteur = this.auteur;
-    newAssignment.matière = this.matiere;
-    newAssignment.photo = this.photo;
-    if (this.dateDeRendu) newAssignment.dateDeRendu = this.dateDeRendu;
+    newAssignment.matiere = this.matiere;
+    newAssignment.photoProf = this.photoProf;
+    newAssignment.photoMatiere = this.photoMatiere;
     newAssignment.rendu = false;
 
     this.assignmentsService.addAssignment(newAssignment).subscribe((reponse) => {

@@ -5,8 +5,9 @@ _id!:string;
   dateDeRendu!:Date;
   rendu!:boolean;
   auteur!: String;
-  matière!: String;
-  photo!: String;
+  matiere!: String;
+  photoProf!: String;
+  photoMatiere!: String;
   note!: Number;
   remarques!: String;
   

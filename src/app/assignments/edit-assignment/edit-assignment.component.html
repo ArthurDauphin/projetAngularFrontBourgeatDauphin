@@ -1,18 +1,68 @@
-<div class="container" *ngIf="assignment">
-    <h1>Edition de l'assignment {{assignment.nom}}</h1>
-    <form ngForm class="form" #formupdate (submit)="onSaveAssignment($event); formupdate.reset(); ">
+  <div class="container" *ngIf="assignment">
+      <h1>Edition de l'assignment {{assignment.nom}}</h1>
+      <form ngForm class="form" #formupdate (submit)="onSaveAssignment($event); formupdate.reset(); ">
+        <mat-form-field>
+          <input matInput placeholder="Edition du nom" [(ngModel)]="nom" name="assignment-name">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Edition de la date" [(ngModel)]="dateDeRendu" name="date">
+          <mat-datepicker-toggle matSuffix [for]="picker">
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label> Auteur : </mat-label>
+          <input matInput
+                placeholder="Auteur"
+                [(ngModel)]="auteur"
+                name="auteur"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label> Matière : </mat-label>
+          <input matInput
+                placeholder="Matière"
+                [(ngModel)]="matiere"
+                name="matiere"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label> Photo du professeur : </mat-label>
+          <input matInput
+                placeholder="URL de la photo"
+                [(ngModel)]="photoProf"
+                name="photo"
+          />
+        </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Edition du nom" [(ngModel)]="nom" name="assignment-name">
+        <mat-label> Photo de la matière : </mat-label>
+        <input matInput
+              placeholder="URL de la photo"
+              [(ngModel)]="photoMatiere"
+              name="photo"
+        />
       </mat-form-field>
-      <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Edition de la date" [(ngModel)]="dateDeRendu" name="date">
-        <mat-datepicker-toggle matSuffix [for]="picker">
-        </mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      <button mat-raised-button color="primary">
-        Sauver
-      </button>
-    </form>
-   </div>
-         
+        <mat-form-field>
+          <mat-label> Note : </mat-label>
+          <input matInput
+                type="number"
+                placeholder="0/20"
+                [(ngModel)]="note"
+                name="note"
+                min="0"
+                max="20">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label> Remarques : </mat-label>
+          <textarea matInput
+                    placeholder="Ajouter des remarques"
+                    [(ngModel)]="remarques"
+                    name="remarques">
+          </textarea>
+        </mat-form-field>
+        <button mat-raised-button color="primary">
+          Sauver
+        </button>
+      </form>
+    </div>
+          

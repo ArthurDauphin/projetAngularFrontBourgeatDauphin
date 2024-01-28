@@ -10,8 +10,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditAssignmentComponent {
   assignment: Assignment = new Assignment();
-  nom: string | undefined;
-  dateDeRendu: Date | undefined;
+  nom = '';
+  dateDeRendu!: Date;
+  auteur = '';
+  matiere = '';
+  photoProf = '';
+  photoMatiere = '';
+  note!: Number;
+  remarques = '';
 
   constructor(
     private assignmentsService: AssignmentsService,
@@ -29,24 +35,50 @@ export class EditAssignmentComponent {
     const nom = this.route.snapshot.queryParams['nom'];
     const fragment = this.route.snapshot.fragment;
     const dateDeRendu = this.route.snapshot.queryParams['dateDeRendu'];
-    console.log('Query Params = ' + nom + ' ' + dateDeRendu + ' ' + fragment);
-    console.log(paramHTTP);
+    const auteur = this.route.snapshot.queryParams['auteur'];
+    const matiere = this.route.snapshot.queryParams['matiere'];
+    const photoProf = this.route.snapshot.queryParams['photoProf'];
+    const photMatiere = this.route.snapshot.queryParams['photMatiere'];
+    const note = this.route.snapshot.queryParams['note'];
+    const remarques = this.route.snapshot.queryParams['remarques'];
     
   }
 
-  onSaveAssignment(event: { preventDefault: () => void }) {
+  onSaveAssignment(event: Event): void {
     event.preventDefault();
+  
     if (this.nom) {
       this.assignment.nom = this.nom;
     }
-
     if (this.dateDeRendu) {
       this.assignment.dateDeRendu = this.dateDeRendu;
     }
-    this.assignmentsService
-      .updateAssignment(this.assignment)
-      .subscribe((reponse) => console.log(reponse.message));
-
-    this.router.navigate(['home']);
+    if (this.auteur) {
+      this.assignment.auteur = this.auteur;
+    }
+    if (this.matiere) {
+      this.assignment.matiere = this.matiere;
+    }
+    if (this.photoProf) {
+      this.assignment.photoProf = this.photoProf;
+    }
+    if (this.photoMatiere) {
+      this.assignment.photoMatiere = this.photoMatiere;
+    }
+    if (this.remarques) {
+      this.assignment.remarques = this.remarques;
+    }
+    if (this.note !== null && this.note !== undefined) {
+      this.assignment.note = this.note;
+    }
+    this.assignmentsService.updateAssignment(this.assignment).subscribe({
+      next: (response) => {
+        console.log(response.message);
+        this.router.navigate(['home']);
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
   }
 }

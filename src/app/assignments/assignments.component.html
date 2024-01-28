@@ -2,7 +2,12 @@
   <div class="btnAjout">
     <nav>
       <a routerLink="/add">
-        <button [disabled]="!isLogged()" mat-flat-button color="accent" class="btnAjout">
+        <button
+          [disabled]="!isLogged()"
+          mat-flat-button
+          color="accent"
+          class="btnAjout"
+        >
           Ajouter Assignment
         </button>
       </a>
@@ -13,36 +18,90 @@
 
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="assignments" matSort>
-      <!-- Date de Rendu Column -->
       <ng-container matColumnDef="dateDeRendu">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de Rendu </th>
-        <td mat-cell *matCellDef="let assignment"> {{assignment.dateDeRendu | date}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date de Rendu</th>
+        <td mat-cell *matCellDef="let assignment">
+          {{ assignment.dateDeRendu | date }}
+        </td>
       </ng-container>
-
-      <!-- Nom Column -->
       <ng-container matColumnDef="nom">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
-        <td mat-cell *matCellDef="let assignment"> {{assignment.nom}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
+        <td mat-cell *matCellDef="let assignment">{{ assignment.nom }}</td>
       </ng-container>
-
-      <!-- Statut Column -->
       <ng-container matColumnDef="statut">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Statut </th>
-        <td mat-cell *matCellDef="let assignment"> 
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Statut</th>
+        <td mat-cell *matCellDef="let assignment">
           <span *ngIf="assignment.rendu" appRendu>RENDU</span>
           <span *ngIf="!assignment.rendu" appNonRendu>N'A PAS ETE RENDU</span>
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="sticky"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openAssignmentDetail(row)"></tr>
-    </table>
-    <mat-paginator [length]="totalDocs"
-               [pageSize]="limit"
-               [pageSizeOptions]="[5, 10, 20]"
-               showFirstLastButtons
-               (page)="onPageChange($event)">
-</mat-paginator>
+      <ng-container matColumnDef="photoProf">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Professeur</th>
+        <td mat-cell *matCellDef="let assignment">
+          <img
+            [src]="assignment.photoProf"
+            alt="Photo du professeur"
+            style="max-width: 100px"
+          />
+        </td>
+      </ng-container>
 
+      <ng-container matColumnDef="photoMatiere">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Matière</th>
+        <td mat-cell *matCellDef="let assignment">
+          <img
+            [src]="assignment.photoMatiere"
+            alt="Photo de la matière"
+            style="max-width: 100px"
+          />
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="auteur">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Auteur</th>
+        <td mat-cell *matCellDef="let assignment">{{ assignment.auteur }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="matiere">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Matière</th>
+        <td mat-cell *matCellDef="let assignment">{{ assignment.matiere }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="note">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Note</th>
+        <td mat-cell *matCellDef="let assignment">
+          <span *ngIf="assignment.rendu" appRendu> {{ assignment.note }} </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="remarques">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Remarque</th>
+        <td mat-cell *matCellDef="let assignment">
+          <span *ngIf="assignment.rendu" appRendu>
+            {{ assignment.remarques }}
+          </span>
+        </td>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="displayedColumns"
+        class="sticky"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        (click)="openAssignmentDetail(row)"
+      ></tr>
+    </table>
+    <mat-paginator
+      [length]="totalDocs"
+      [pageSize]="limit"
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      (page)="onPageChange($event)"
+    >
+    </mat-paginator>
   </div>
 </main>

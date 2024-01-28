@@ -6,16 +6,23 @@
     <mat-card-subtitle>
       {{ assignmentTransmis.dateDeRendu | date : "dd/MM/yyyy" }}
     </mat-card-subtitle>
+    <p>Auteur: {{ assignmentTransmis.auteur }}</p>
+    <p>Matière: {{ assignmentTransmis.matiere }}</p>
+    <img [src]="assignmentTransmis.photoMatiere" alt="Photo de la matière" style="max-width: 100px;">
+    <img [src]="assignmentTransmis.photoProf" alt="Photo du professeur" style="max-width: 100px;">
+    <div *ngIf="assignmentTransmis.rendu">
+      <p>Note: {{ assignmentTransmis.note }}</p>
+      <p>Remarques: {{ assignmentTransmis.remarques }}</p>
+    </div>
     <mat-card-actions id="bottom">
-      <mat-checkbox
-        *ngIf="!assignmentTransmis.rendu"
-        (click)="assignmentTransmis.rendu = true"
-      >
-        Rendu
-      </mat-checkbox>
-          <button mat-raised-button color="primary" 
-          [disabled]="!isAdmin()"
-          (click)="onClickEdit()">EDIT</button>
+      <button mat-raised-button
+              [disabled]="assignmentTransmis.note === null || assignmentTransmis.note === undefined"
+              (click)="onAssignmentRendu()">
+        Marquer comme Rendu
+      </button>    
+      <button mat-raised-button color="primary" 
+              [disabled]="!isAdmin()"
+              (click)="onClickEdit()">EDIT</button>
       <button [disabled]="!isAdmin()" (click)="onDeleteAssignment()" mat-raised-button color="warn">
         DELETE
       </button>

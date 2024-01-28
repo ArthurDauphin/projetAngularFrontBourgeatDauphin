@@ -20,7 +20,7 @@ export class AssignmentsComponent implements OnInit {
   boutonDesactive = true;
   assignmentSelectionne?: Assignment;
   assignments!: Assignment[];
-  displayedColumns: string[] = ['dateDeRendu', 'nom', 'statut'];
+  displayedColumns: string[] = ['dateDeRendu', 'nom', 'statut', 'photoProf', 'photoMatiere', 'auteur', 'matiere', 'note', 'remarques'];
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   page:number = 1;
