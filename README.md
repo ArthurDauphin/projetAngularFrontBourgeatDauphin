@@ -13,7 +13,7 @@
 
 **Résumé des Réalisations lors des TD 5 et 6**
 
-Les TD 5 et 6vont été entièrement accomplis.
+Les TD 5 et 6 ont été entièrement accomplis.
 
 **Améliorations et Nouvelles Fonctionnalités**
 
