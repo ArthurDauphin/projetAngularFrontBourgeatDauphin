@@ -13,7 +13,7 @@ export class AssignmentsService {
     private loggingService: LoggingService,
     private http: HttpClient
   ) {}
-  url = 'http://localhost:8010/api/assignments';
+url = "https://app-assignment-backend.onrender.com/api/assignments"
 
   getAssignments(): Observable<Assignment[]> {
     return this.http.get<Assignment[]>(this.url);
@@ -54,6 +54,7 @@ export class AssignmentsService {
  };
  
  getAssignmentsPagine(page:number, limit:number): Observable<any> {
+  // Correct the URL by using '&' to separate the query parameters
   return this.http.get<any>(`${this.url}?page=${page}&limit=${limit}`);
 
  }
