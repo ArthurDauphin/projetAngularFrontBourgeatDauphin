@@ -1,4 +1,9 @@
 # Projet Angular Dauphin Bourgeat
+
+## Vidéo de présentation
+
+Lien : https://www.youtube.com/watch?v=qL4z0cg-uio
+
 ## Liens vers les GitHub
 
 * FrontEnd : https://github.com/ArthurDauphin/projetAngularFrontBourgeatDauphin
